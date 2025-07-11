@@ -11,7 +11,7 @@ bucket     = ENV['MINIO_BUCKET']
 s3 = Aws::S3::Client.new(
   access_key_id: access_key,
   secret_access_key: secret_key,
-  region: 'us-east-1',             # Required but arbitrary
+  region: 'eu-west-2',             # Required but arbitrary
   endpoint: endpoint,
   force_path_style: true
 )
