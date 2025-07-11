@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  minio:
+    image: quay.io/minio/minio:latest
+    container_name: minio-server
+    ports:
+      - "9900:9000" # MinIO API
+      - "9901:9001" # MinIO Console
+    volumes:
+      - minio_data:/data
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+    networks:
+      - minio-network
+
+volumes:
+  minio_data:
+
+networks:
+  minio-network:
+    driver: bridge
